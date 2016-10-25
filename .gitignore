@@ -46,5 +46,8 @@ jspm_packages
 # Created by macOS Finder (?)
 *.DS_Store
 
+# tmp folder used by nexe
+tmp
+
 # Webpack hot module replacement updates
 dist/hot

@@ -1,0 +1,60 @@
+{
+  "name": "wordcloud",
+  "version": "1.0.0",
+  "main": "dist/wordcloud.js",
+  "scripts": {
+    "lint": "eslint src webpack.config.babel.js",
+    "fix": "eslint src webpack.config.babel.js --fix",
+    "start": "start cmd.exe @cmd /k \"yarn run build.watch\" && start cmd.exe @cmd /k \"node dist/wordcloud.dev.js\" && yarn run test.watch",
+    "build.watch": "webpack --watch --config webpack.config.babel.js",
+    "build.min": "webpack --config webpack.config.babel.js --env.prod --optimize-minimize",
+    "build.binary": "path-exists dist/wordcloud.js && nexe -i dist/wordcloud.js -o dist/wordcloud.bin || echo Please execute `$ yarn run build.min` before you can continue to bundle the binary.",
+    "build": "yarn run build.min && yarn run build.binary",
+    "test": "ava --require=babel-register --verbose",
+    "test.watch": "ava --watch --require=babel-register",
+    "history": "git log --pretty=format:\"%h %s\" --graph"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "repository": {
+    "url": "https://github.com/Vailfire/wordcloud",
+    "type": "git"
+  },
+  "author": "Calvin Reibenspieß",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-stage-3": "^6.17.0",
+    "babel-register": "^6.16.3",
+    "eslint": "^3.8.0",
+    "eslint-cli": "^1.1.0",
+    "eslint-config-airbnb-base": "^8.0.0",
+    "eslint-loader": "^1.5.0",
+    "eslint-plugin-import": "^2.0.1",
+    "nexe": "^1.1.2",
+    "path-exists-cli": "^1.0.0",
+    "webpack": "^2.1.0-beta.25"
+  },
+  "babel": {
+    "presets": [
+      "latest",
+      "stage-3"
+    ]
+  },
+  "ava": {
+    "babel": "inherit"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "no-console": "off"
+    },
+    "extends": "airbnb-base"
+  }
+}
