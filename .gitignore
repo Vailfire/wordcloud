@@ -49,5 +49,6 @@ jspm_packages
 # tmp folder used by nexe
 tmp
 
-# Webpack hot module replacement updates
+# Webpack hot module replacement updates and development bundle
 dist/hot
+dist/wordcloud.dev.js
