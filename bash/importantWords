@@ -1,0 +1,1 @@
+cat file | fmt -w 0 | grep -v '[[:punct:][:digit:]]' | grep -v -i -f stopWords | uniq -c | sort -rg | head -n 15
