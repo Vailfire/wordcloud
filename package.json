@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint src webpack.config.babel.js",
     "fix": "eslint src webpack.config.babel.js --fix",
-    "start": "start cmd.exe @cmd /k \"yarn run build.watch\" && start cmd.exe @cmd /k \"yarn run node.dev\" && yarn run test.watch",
+    "start": "start cmd.exe @cmd /k \"yarn run build.dev.watch\" && start cmd.exe @cmd /k \"yarn run node.dev\" && yarn run test.watch",
     "node.dev": "node dist/wordcloud.dev.js",
     "build.dev": "webpack --config webpack.config.babel.js",
     "build.dev.watch": "webpack --watch --config webpack.config.babel.js",
