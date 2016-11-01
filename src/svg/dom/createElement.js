@@ -30,9 +30,9 @@ export const standardizeAttributes = (attributes) => {
  * automatically removed.
  * @param  {string} tag A tag that defines the DOM-Element that cannot be omitted.
  * Otherwise, an empty array will be returned.
- * @param  {(string|string[]|number|number[]|Object)} attributes
- * @param  {Array}  children
- * @return {Array} An array containing an object that represents the DOM-Element.
+ * @param  {(string|string[]|number|number[]|Object)} [attributes={}]
+ * @param  {(string|string[]|number|number[]|Object|Object[])}  children
+ * @return {Object[]} An array containing an object that represents the DOM-Element.
  */
 const createElement = (tag, attributes = {}, children = []) => {
   if (tag === undefined) {
