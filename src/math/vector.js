@@ -43,7 +43,6 @@ export const multiply = (vector = [], scalar = 1) => vector.map(value => value *
 /**
  * Divide a vector by a scalar.
  * A division can be defined as an inversed multiplication.
- * *This function is currently not covered by unit tests.*
  * @param {number[]} vector
  * @param {number} scalar
  * @returns {number[]} resulting vector
