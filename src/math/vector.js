@@ -1,7 +1,13 @@
 /**
+ * General vector mathematics using arrays.
+ * @module math/vector
+ */
+
+/**
  * Add two or more vectors.
  * @param {...number[]} vectors
  * @returns {number[]} resulting vector
+ * @memberof math/vector
  */
 export const add = (...vectors) => {
   const resulting = [];
@@ -17,6 +23,7 @@ export const add = (...vectors) => {
  * Subtract two or more vectors.
  * @param {...number[]} vectors
  * @returns {number[]} resulting vector
+ * @memberof math/vector
  */
 export const subtract = (...vectors) => add(...vectors
   .map((vector, index) => (
@@ -29,30 +36,33 @@ export const subtract = (...vectors) => add(...vectors
  * @param {number[]} vector
  * @param {number} scalar
  * @returns {number[]} resulting vector
+ * @memberof math/vector
  */
 export const multiply = (vector = [], scalar = 1) => vector.map(value => value * scalar);
 
 /**
- * (NOT COVERED BY UNIT TESTS!)
  * Divide a vector by a scalar.
  * A division can be defined as an inversed multiplication.
+ * *This function is currently not covered by unit tests.*
  * @param {number[]} vector
  * @param {number} scalar
  * @returns {number[]} resulting vector
+ * @memberof math/vector
  */
 export const divide = (vector = [], scalar = 1) => multiply(vector, 1 / scalar);
 
 /**
  * Calculate the dot product that is a single number between two vectors. The dot
  * product is directly related to the cosine of the angle between two vectors in
- * Euclidean space of any number of dimensions.
- * (see {@link https://en.wikipedia.org/wiki/Dot_product}|Wikipedia)
+ * Euclidean space of any number of dimensions
+ * (see {@link https://en.wikipedia.org/wiki/Dot_product}).
  *
  * Unlike the mathematical definition this method does ignore different cardinalities
  * of the given vectors and fills differences with zero.
  * @param {number[]} vector1
  * @param {number[]} vector2
  * @returns {number} resulting dot product
+ * @memberof math/vector
  */
 export const dot = (vector1 = [], vector2 = []) => {
   let result = 0;
@@ -70,17 +80,19 @@ export const dot = (vector1 = [], vector2 = []) => {
  * root of the dot product of the vector by itself.
  * Geometrically, a vector can be described as an arrow from the origin of the
  * space (vector tail) to a point (vector tip). The magnitude is the distance
- * between its tail and its tip.
- * @see {@link https://en.wikipedia.org/wiki/Magnitude_(mathematics)#Euclidean_vector_space|Wikipedia}
+ * between its tail and its tip
+ * (see {@link https://en.wikipedia.org/wiki/Magnitude_(mathematics)#Euclidean_vector_space}).
  * @param {number[]} vector
  * @returns {number} magnitude
+ * @memberof math/vector
  */
 export const magnitude = vector => Math.sqrt(dot(vector, vector));
 
 /**
- * Normalize a vector.
- * @see {@link https://en.wikipedia.org/wiki/Unit_vector|Wikipedia}
+ * Normalize a vector
+ * (see {@link https://en.wikipedia.org/wiki/Unit_vector}).
  * @param  {number[]} vector
  * @return {number[]} normalized vector with its magnitude=0
+ * @memberof math/vector
  */
 export const normalize = vector => divide(vector, magnitude(vector));

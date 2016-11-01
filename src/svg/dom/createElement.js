@@ -1,10 +1,10 @@
-
 /**
  * Standardize and transform element attributes to objects that are given with a
  * different type. Primitive values will be wrapped to them as corresponding key
  * and an empty string value.
  * @param  {(string|string[]|number|number[]|Object)} attributes
  * @return {Object} standardized attributes
+ * @memberof svg/dom
  */
 export const standardizeAttributes = (attributes) => {
   if (typeof attributes === 'object' && !Array.isArray(attributes)) {
@@ -22,8 +22,8 @@ export const standardizeAttributes = (attributes) => {
  * Create a valid DOM-Element that is represented as an object with a tag,
  * attributes and an array containing child elements. Attributes are represented
  * as an object, but can also be passed as a string, number or array. Those are
- * escaped to an object with them as key and an empty string as the attribute
- * (@see standardizeAttributes).
+ * escaped to an object with them as key and an empty string as the attribute.
+ * (@see .standardizeAttributes())
  * The returning element is wrapped in an array. This behavior ensures easy
  * modifiability when adding more elements to the hierarchy. When passing nested
  * children, redundant square brackets (only on the second level) will be
@@ -33,6 +33,7 @@ export const standardizeAttributes = (attributes) => {
  * @param  {(string|string[]|number|number[]|Object)} [attributes={}]
  * @param  {(string|string[]|number|number[]|Object|Object[])}  children
  * @return {Object[]} An array containing an object that represents the DOM-Element.
+ * @memberof svg/dom
  */
 const createElement = (tag, attributes = {}, children = []) => {
   if (tag === undefined) {
