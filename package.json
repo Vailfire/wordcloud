@@ -13,7 +13,7 @@
     "build.prod.min": "webpack --config webpack.config.babel.js --env.prod --optimize-minimize",
     "build.prod.binary": "path-exists dist/wordcloud.js && nexe -i dist/wordcloud.js -o dist/wordcloud.bin || echo Please execute `$ yarn run build.min` before you can continue to bundle the binary.",
     "build": "yarn run build.prod.min && yarn run build.prod.binary",
-    "test": "ava --require=babel-register --verbose -c 1",
+    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text ava --require=babel-register --verbose -c 1",
     "test.watch": "ava --watch --require=babel-register",
     "history": "git log --pretty=format:\"%h %s\" --graph"
   },
@@ -33,9 +33,11 @@
     "ava": "^0.16.0",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
+    "babel-plugin-istanbul": "^2.0.3",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-3": "^6.17.0",
     "babel-register": "^6.16.3",
+    "cross-env": "^3.1.3",
     "documentation": "^4.0.0-beta11",
     "eslint": "^3.8.0",
     "eslint-cli": "^1.1.0",
@@ -43,6 +45,7 @@
     "eslint-loader": "^1.5.0",
     "eslint-plugin-import": "^2.0.1",
     "nexe": "^1.1.2",
+    "nyc": "^8.3.2",
     "path-exists-cli": "^1.0.0",
     "webpack": "^2.1.0-beta.25"
   },
@@ -50,7 +53,22 @@
     "presets": [
       "latest",
       "stage-3"
-    ]
+    ],
+    "env": {
+      "test": {
+        "plugins": [ "istanbul" ]
+      }
+    }
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false
   },
   "ava": {
     "babel": "inherit"
