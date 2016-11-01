@@ -12,7 +12,7 @@
     "build.documentation": "documentation build -g -f \"html\" -o dist/documentation src/math/vector.js src/svg/dom/index.js",
     "build.prod.min": "webpack --config webpack.config.babel.js --env.prod --optimize-minimize",
     "build.prod.binary": "path-exists dist/wordcloud.js && nexe -i dist/wordcloud.js -o dist/wordcloud.bin || echo Please execute `$ yarn run build.min` before you can continue to bundle the binary.",
-    "build": "yarn run build.prod.min && yarn run build.prod.binary",
+    "build": "yarn build.documentation && yarn run build.prod.min && yarn run build.prod.binary",
     "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text ava --require=babel-register --verbose -c 1",
     "test.watch": "ava --watch --require=babel-register",
     "history": "git log --pretty=format:\"%h %s\" --graph"
