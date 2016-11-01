@@ -2,4 +2,4 @@ text eol=auto
 *.js text eol=lf
 yarn.lock text eol=lf
 package.json text eol=lf
-dist/documentation text eol=lf
+dist/documentation.md text eol=lf
