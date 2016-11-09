@@ -40,13 +40,13 @@ echo " 2016 © Calvin Reibenspieß <calvinreibenspiess@gmail.com>"
 echo "                                      "
 
 echo "=> Passed arguments"
-echo "  - TEXT_NAME: " $TEXT_NAME
-echo "  - WORDCLOUD_OUTPUT_NAME: " $WORDCLOUD_OUTPUT_NAME
-echo "  - WORDCLOUD_RESOLUTION: " $WORDCLOUD_RESOLUTION
-echo "  - TEXT_MOST_IMPORTANT_TAGS_QUANTITY: " $TEXT_MOST_IMPORTANT_TAGS_QUANTITY
-echo "  - TEXT_STOP_WORDS: " $TEXT_STOP_WORDS
+echo "  - TEXT_NAME:" $TEXT_NAME
+echo "  - WORDCLOUD_OUTPUT_NAME:" $WORDCLOUD_OUTPUT_NAME
+echo "  - WORDCLOUD_RESOLUTION:" $WORDCLOUD_RESOLUTION
+echo "  - TEXT_MOST_IMPORTANT_TAGS_QUANTITY:" $TEXT_MOST_IMPORTANT_TAGS_QUANTITY
+echo "  - TEXT_STOP_WORDS:" $TEXT_STOP_WORDS
 
-echo "=> Generating a wordcloud with " $SIZE_X "px width and " $SIZE_Y "px height."
+echo "=> Generating a wordcloud with" $SIZE_X "px width and" $SIZE_Y "px height."
 
 echo "=> Downloading additional dependencies..."
 
@@ -76,14 +76,22 @@ SIZE_Y_GAPPED=$(($SIZE_Y - $SIZE_Y / 5))
 for word in $IMPORTANTWORDS; do
     
     # calculate individual font size
-    POINT_SIZE=$((75 / ($COUNT+1) + 15))
+    POINT_SIZE=$(($SIZE_Y / 3 / ($COUNT+1) + 15))
     
     # calculate rotation and angle back to origin
     ROTATION=${ROTATIONS[$RANDOM % ${#ROTATIONS[@]}]}
     FILL_ROTATION=$((360 - $ROTATION))
 
-    (( COUNT % 2 )) && COMPOSEDWORDS+=("-pointsize $POINT_SIZE -rotate $ROTATION -annotate +$( shuf -i ${SIZE_X_OFFSET}-${SIZE_X_GAPPED} -n 1 )+$( shuf -i ${SIZE_Y_OFFSET}-${SIZE_Y_GAPPED} -n 1 ) ${word} -rotate $FILL_ROTATION") \
-    && echo " " ${COMPOSEDWORDS[-1]}
+    if (( COUNT % 2 )); then
+        COMPOSEDWORDS+=("
+        -pointsize $POINT_SIZE \
+        -rotate $ROTATION \
+        -annotate +$( shuf -i ${SIZE_X_OFFSET}-${SIZE_X_GAPPED} -n 1 )+$( shuf -i ${SIZE_Y_OFFSET}-${SIZE_Y_GAPPED} -n 1 ) \
+        ${word} \
+        -rotate $FILL_ROTATION \
+        ")
+        echo " " ${COMPOSEDWORDS[-1]}
+    fi    
     ((COUNT+=1))
 done
 
