@@ -1,7 +1,0 @@
-#!/bin/bash
-
-SIZE="1024x768"
-
-IMPORTANTWORDS="$(bash importantWords file)"
-
-convert -size $SIZE xc:skyblue -fill white stroke black -pointsize 40 -gravity center -font unifont-Medium -draw "text 0,0 '${IMPORTANTWORDS}'" output.png
